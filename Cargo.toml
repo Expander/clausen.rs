@@ -2,8 +2,11 @@
 name = "clausen"
 version = "0.1.0"
 authors = ["Alexander Voigt <ahgvoigt@gmail.com>"]
+license = "LGPL-3.0-only"
+readme = "README.md"
+description = "Rust implementation of Clausen functions."
+homepage = "https://github.com/Expander/clausen.rs"
+repository = "https://github.com/Expander/clausen.rs"
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
