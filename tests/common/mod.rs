@@ -48,7 +48,7 @@ pub fn read_data_file(filename: &str) -> Result<Vec<(f64, f64)>, std::io::Error>
             .collect::<Vec<f64>>();
 
         if vals.len() != 2 {
-            return Err(Error::new(ErrorKind::UnexpectedEof, "line does not contain 4 real numbers"));
+            return Err(Error::new(ErrorKind::UnexpectedEof, "line does not contain 2 real numbers"));
         }
 
         vec.push((vals[0], vals[1]));
