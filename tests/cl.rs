@@ -1,7 +1,6 @@
 extern crate clausen;
 extern crate num;
 use clausen::Cl;
-use num::Float;
 mod common;
 
 #[test]
