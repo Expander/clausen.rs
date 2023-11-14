@@ -1,6 +1,15 @@
 pub trait Cl<T> {
+    /// Returns the n-th order Standard Clausen function.
+    ///
+    /// # Example:
+    /// ```
+    /// use clausen::Cl;
+    ///
+    /// println!("Cl_{}({}) = {}", 2, 1.0, 1.0.cl(2));
+    /// ```
     fn cl(&self, n: i32) -> T;
 }
+
 
 impl Cl<f64> for f64 {
     fn cl(&self, n: i32) -> f64 {
@@ -11,7 +20,19 @@ impl Cl<f64> for f64 {
     }
 }
 
-fn cl1(mut x: f64) -> f64 {
+
+fn cl1(x: f64) -> f64 {
+    let y = range_reduce_odd(x);
+
+    if y == 0.0 {
+        std::f64::INFINITY
+    } else {
+        -(2.0*(0.5*y).sin()).ln()
+    }
+}
+
+
+fn range_reduce_odd(mut x: f64) -> f64 {
     if x < 0.0 {
         x = -x;
     }
@@ -26,9 +47,5 @@ fn cl1(mut x: f64) -> f64 {
         x = (p0 - x) + p1;
     }
 
-    if x == 0.0 {
-        std::f64::INFINITY
-    } else {
-        -(2.0*(0.5*x).sin()).ln()
-    }
+    x
 }
