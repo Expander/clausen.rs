@@ -10,3 +10,4 @@ repository = "https://github.com/Expander/clausen.rs"
 edition = "2018"
 
 [dependencies]
+num = "0.4"
