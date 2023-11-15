@@ -1,3 +1,4 @@
+/// reduce ranges of x to [0,pi] for an odd function
 pub fn range_reduce_odd(mut x: f64) -> f64 {
     if x < 0.0 {
         x = -x;
@@ -17,6 +18,7 @@ pub fn range_reduce_odd(mut x: f64) -> f64 {
 }
 
 
+/// reduces range of x to [0,pi] for an even function
 pub fn range_reduce_even(mut x: f64) -> (f64, f64) {
     let mut sgn = 1.0;
 

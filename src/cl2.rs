@@ -1,6 +1,7 @@
 use crate::range_reduction::range_reduce_even;
 
 
+/// Standard Clausen function Cl_2(x) for a real argument
 pub fn cl2(x: f64) -> f64 {
     let (r, sgn) = range_reduce_even(x);
 

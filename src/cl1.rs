@@ -1,6 +1,7 @@
 use crate::range_reduction::range_reduce_odd;
 
 
+/// Standard Clausen function Cl_1(x) for a real argument
 pub fn cl1(x: f64) -> f64 {
     let r = range_reduce_odd(x);
 
