@@ -1,5 +1,6 @@
 use crate::range_reduction::range_reduce_odd;
 
+
 pub fn cl1(x: f64) -> f64 {
     let r = range_reduce_odd(x);
 
