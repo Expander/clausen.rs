@@ -1,5 +1,3 @@
-extern crate clausen;
-extern crate num;
 use clausen::Cl;
 mod common;
 
