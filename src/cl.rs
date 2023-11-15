@@ -1,5 +1,6 @@
 use crate::cl1::cl1;
 use crate::cl2::cl2;
+use crate::cl3::cl3;
 
 
 pub trait Cl<T> {
@@ -20,6 +21,7 @@ impl Cl<f64> for f64 {
         match n {
             1 => cl1(*self),
             2 => cl2(*self),
+            3 => cl3(*self),
             _ => 0.0
         }
     }
