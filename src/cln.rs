@@ -24,12 +24,21 @@ fn cln_zeta(n: i64, x: f64) -> f64 {
     let sign2 = if is_even(n/2) { 1.0 } else { -1.0 };
 
     // first line in Eq.(2.13)
-    let term1 = 0.0;
+    let term1 = if x == 0.0 {
+        0.0
+    } else {
+        sign1*x.powf((n - 1) as f64)*inv_fac(n - 1)*(2.0*(0.5*x).sin()).ln()
+    };
 
     // second line in Eq.(2.13)
     let term2 = 0.0;
 
     term1 + term2
+}
+
+
+fn inv_fac(n: i64) -> f64 {
+    0.0 // @todo
 }
 
 
