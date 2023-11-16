@@ -115,7 +115,7 @@ fn binomial(n: i64, k: i64) -> f64 {
 }
 
 
-/// Series expansion of Cl_n(x)
+/// Series expansion of Cl_n(x) in terms of sin(x) and cos(x)
 fn cln_series(n: i64, x: f64) -> f64 {
     let kmax = (f64::EPSILON.powf(-(n as f64).recip())).ceil() as i64;
 
@@ -147,6 +147,7 @@ fn cln_series(n: i64, x: f64) -> f64 {
 }
 
 
+/// map x to [0,pi] using the symmetries of Cl_n(x)
 fn range_reduce(n: i64, x: f64) -> (f64, f64) {
     if is_even(n) {
         range_reduce_even(x)
