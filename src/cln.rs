@@ -69,12 +69,26 @@ fn zeta(n: i64) -> f64 {
 }
 
 
+/// returns sum in Eq.(2.13), n > 1
 fn nsum(n: i64, x: f64) -> f64 {
+    let mut sum = 0.0;
+    let mut xn = 1.0;
+
+    for i in 0..=(n - 3) {
+        sum += binomial(n - 2, i)*xn*ncal(n - 2 - i, x);
+        xn *= -x;
+    }
+
+    sum + xn*ncal(0, x)
+}
+
+
+fn ncal(n: i64, x: f64) -> f64 {
     0.0 // @todo
 }
 
 
-// returns the binomial coefficient (n, k)
+/// returns the binomial coefficient (n, k)
 fn binomial(n: i64, k: i64) -> f64 {
     [[1.0, 0.0,  0.0,  0.0,   0.0,   0.0,  0.0,  0.0],
      [1.0, 1.0,  0.0,  0.0,   0.0,   0.0,  0.0,  0.0],
