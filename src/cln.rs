@@ -31,13 +31,23 @@ fn cln_zeta(n: i64, x: f64) -> f64 {
     };
 
     // second line in Eq.(2.13)
-    let term2 = 0.0;
+    let term2 = pcal(n, x) - sign2*inv_fac(n - 2)*nsum(n, x);
 
     term1 + term2
 }
 
 
 fn inv_fac(n: i64) -> f64 {
+    0.0 // @todo
+}
+
+
+fn pcal(n: i64, x: f64) -> f64 {
+    0.0 // @todo
+}
+
+
+fn nsum(n: i64, x: f64) -> f64 {
     0.0 // @todo
 }
 
