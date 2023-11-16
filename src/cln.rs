@@ -20,7 +20,16 @@ pub fn cln(n: i64, x: f64) -> f64 {
 /// of the Clausen functions Cl_n(0)(n >= 2)", Bit Numer Math 50,
 /// 193-206 (2010), https://doi.org/10.1007/s10543-009-0246-8].
 fn cln_zeta(n: i64, x: f64) -> f64 {
-    0.0
+    let sign1 = if is_even((n + 1)/2) { 1.0 } else { -1.0 };
+    let sign2 = if is_even(n/2) { 1.0 } else { -1.0 };
+
+    // first line in Eq.(2.13)
+    let term1 = 0.0;
+
+    // second line in Eq.(2.13)
+    let term2 = 0.0;
+
+    term1 + term2
 }
 
 
