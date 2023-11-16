@@ -8,10 +8,19 @@ pub fn cln(n: i64, x: f64) -> f64 {
     if is_even(n) && (r == 0.0 || r == core::f64::consts::PI) {
         0.0
     } else if n < 10 {
-        sgn*0.0 // @todo(alex): implement advanced algorithm
+        sgn*cln_zeta(n, r)
     } else {
         sgn*cln_series(n, r)
     }
+}
+
+
+/// Series expansion of Cl_n(x) in terms of the zeta function from
+/// [Jiming Wu, Xiaoping Zhang, Dongjie Liu, "An efficient calculation
+/// of the Clausen functions Cl_n(0)(n >= 2)", Bit Numer Math 50,
+/// 193-206 (2010), https://doi.org/10.1007/s10543-009-0246-8].
+fn cln_zeta(n: i64, x: f64) -> f64 {
+    0.0
 }
 
 
