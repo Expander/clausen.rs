@@ -42,8 +42,22 @@ fn inv_fac(n: i64) -> f64 {
 }
 
 
+/// returns P_n(x)
 fn pcal(n: i64, x: f64) -> f64 {
-    0.0 // @todo
+    let mut sum = 0.0;
+    let x2 = x*x;
+    let fl = (n - 1)/2;
+
+    for i in (3..=n).step_by(2) {
+        let sgn = if is_even(fl + (i - 1)/2) { 1.0 } else { -1.0 };
+        sum = x2*sum + sgn*zeta(i)*inv_fac(n - i);
+    }
+
+    if is_even(n) {
+        sum *= x;
+    }
+
+    sum
 }
 
 
