@@ -4,6 +4,7 @@ use crate::cl3::cl3;
 use crate::cl4::cl4;
 use crate::cl5::cl5;
 use crate::cl6::cl6;
+use crate::cln::cln;
 
 
 pub trait Cl<T> {
@@ -29,7 +30,7 @@ impl Cl<f64> for f64 {
             4 => cl4(*self),
             5 => cl5(*self),
             6 => cl6(*self),
-            _ => 0.0
+            _ => cln(n, *self)
         }
     }
 }
