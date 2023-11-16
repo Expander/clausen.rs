@@ -23,5 +23,17 @@ fn bench_cl2(c: &mut Criterion) {
     group.finish();
 }
 
-criterion_group!(benches, bench_cl1, bench_cl2);
+fn bench_cl9(c: &mut Criterion) {
+    let mut group = c.benchmark_group("cl(9,x)");
+    group.bench_function("x=1.0", |b| b.iter(|| black_box(1.0).cl(9)));
+    group.finish();
+}
+
+fn bench_cl10(c: &mut Criterion) {
+    let mut group = c.benchmark_group("cl(10,x)");
+    group.bench_function("x=1.0", |b| b.iter(|| black_box(1.0).cl(10)));
+    group.finish();
+}
+
+criterion_group!(benches, bench_cl1, bench_cl2, bench_cl9, bench_cl10);
 criterion_main!(benches);
