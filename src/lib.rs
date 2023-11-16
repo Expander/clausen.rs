@@ -7,8 +7,6 @@
 //!
 //! # Example:
 //! ```
-//! extern crate num;
-//! extern crate clausen;
 //! use clausen::Cl;
 //!
 //! fn main() {
@@ -19,8 +17,6 @@
 //! }
 //! ```
 
-
-extern crate num;
 
 mod cl;
 mod cl1;
