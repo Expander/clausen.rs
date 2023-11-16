@@ -2,6 +2,12 @@ use clausen::Cl;
 mod common;
 
 #[test]
+#[should_panic]
+fn test_non_positive_order() {
+    1.0.cl(0);
+}
+
+#[test]
 fn test_values() {
     let eps = 1e-14;
 
