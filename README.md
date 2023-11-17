@@ -29,3 +29,6 @@ fn main() {
 
 Copying
 -------
+
+clausen is licenced under the GNU Lesser General Public License (GNU
+LGPL) version 3.
