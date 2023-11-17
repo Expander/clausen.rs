@@ -27,5 +27,7 @@ mod cl5;
 mod cl6;
 mod cln;
 mod range_reduction;
+mod sl;
 
 pub use self::cl::Cl;
+pub use self::sl::Sl;
