@@ -11,7 +11,7 @@ fn test_non_positive_order() {
 fn test_values() {
     let eps = 1e-14;
 
-    for n in [1, 2, 3, 1000, 1001].iter() {
+    for n in [1, 2, 3, 4, 1000, 1001].iter() {
         let values = common::read_data_file(&format!("Sl{}.txt", *n)).unwrap();
 
         for &(v, expected) in values.iter() {
