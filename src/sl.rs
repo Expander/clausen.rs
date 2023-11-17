@@ -1,8 +1,13 @@
+mod sl1;
+mod sl2;
+mod sl3;
+mod sln;
+
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
-use crate::sl1::sl1;
-use crate::sl2::sl2;
-use crate::sl3::sl3;
-use crate::sln::sln;
+use crate::sl::sl1::sl1;
+use crate::sl::sl2::sl2;
+use crate::sl::sl3::sl3;
+use crate::sl::sln::sln;
 
 
 pub trait Sl<T> {
