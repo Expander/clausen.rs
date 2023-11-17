@@ -4,6 +4,7 @@ mod sl3;
 mod sl4;
 mod sl5;
 mod sl6;
+mod sl7;
 mod sln;
 
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
@@ -13,6 +14,7 @@ use crate::sl::sl3::sl3;
 use crate::sl::sl4::sl4;
 use crate::sl::sl5::sl5;
 use crate::sl::sl6::sl6;
+use crate::sl::sl7::sl7;
 use crate::sl::sln::sln;
 
 
@@ -41,6 +43,7 @@ impl Sl<f64> for f64 {
             4 => sgn*sl4(r),
             5 => sgn*sl5(r),
             6 => sgn*sl6(r),
+            7 => sgn*sl7(r),
             _ => sgn*sln(n, r)
         }
     }
