@@ -28,6 +28,10 @@ mod cl6;
 mod cln;
 mod range_reduction;
 mod sl;
+mod sl1;
+mod sl2;
+mod sl3;
+mod sln;
 
 pub use self::cl::Cl;
 pub use self::sl::Sl;
