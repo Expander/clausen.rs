@@ -6,13 +6,13 @@ mod cl5;
 mod cl6;
 mod cln;
 
-use crate::cl::cl1::cl1;
-use crate::cl::cl2::cl2;
-use crate::cl::cl3::cl3;
-use crate::cl::cl4::cl4;
-use crate::cl::cl5::cl5;
-use crate::cl::cl6::cl6;
-use crate::cl::cln::cln;
+use cl1::cl1;
+use cl2::cl2;
+use cl3::cl3;
+use cl4::cl4;
+use cl5::cl5;
+use cl6::cl6;
+use cln::cln;
 
 
 pub trait Cl<T> {

@@ -11,17 +11,17 @@ mod sl10;
 mod sln;
 
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
-use crate::sl::sl1::sl1;
-use crate::sl::sl2::sl2;
-use crate::sl::sl3::sl3;
-use crate::sl::sl4::sl4;
-use crate::sl::sl5::sl5;
-use crate::sl::sl6::sl6;
-use crate::sl::sl7::sl7;
-use crate::sl::sl8::sl8;
-use crate::sl::sl9::sl9;
-use crate::sl::sl10::sl10;
-use crate::sl::sln::sln;
+use sl1::sl1;
+use sl2::sl2;
+use sl3::sl3;
+use sl4::sl4;
+use sl5::sl5;
+use sl6::sl6;
+use sl7::sl7;
+use sl8::sl8;
+use sl9::sl9;
+use sl10::sl10;
+use sln::sln;
 
 
 pub trait Sl<T> {
