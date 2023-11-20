@@ -9,13 +9,11 @@
 //! ```
 //! use clausen::{Cl, Sl};
 //!
-//! fn main() {
-//!     let x = 1.0;
-//!     let n = 2;
+//! let x = 1.0;
+//! let n = 2;
 //!
-//!     println!("Cl_{}({}) = {}", n, x, x.cl(n)); // Cl_n(x)
-//!     println!("Sl_{}({}) = {}", n, x, x.sl(n)); // Sl_n(x)
-//! }
+//! println!("Cl_{}({}) = {}", n, x, x.cl(n)); // Cl_n(x)
+//! println!("Sl_{}({}) = {}", n, x, x.sl(n)); // Sl_n(x)
 //! ```
 
 
