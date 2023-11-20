@@ -6,14 +6,6 @@ mod cl5;
 mod cl6;
 mod cln;
 
-use cl1::cl1;
-use cl2::cl2;
-use cl3::cl3;
-use cl4::cl4;
-use cl5::cl5;
-use cl6::cl6;
-use cln::cln;
-
 
 pub trait Cl<T> {
     /// Returns the n-th order Standard Clausen function.
@@ -32,13 +24,13 @@ impl Cl<f64> for f64 {
     fn cl(&self, n: i64) -> f64 {
         match n {
             k if k < 1 => panic!("cl(n) not implemented for n < 1 (you've called {}.cl({}))", self, n),
-            1 => cl1(*self),
-            2 => cl2(*self),
-            3 => cl3(*self),
-            4 => cl4(*self),
-            5 => cl5(*self),
-            6 => cl6(*self),
-            _ => cln(n, *self)
+            1 => cl1::cl1(*self),
+            2 => cl2::cl2(*self),
+            3 => cl3::cl3(*self),
+            4 => cl4::cl4(*self),
+            5 => cl5::cl5(*self),
+            6 => cl6::cl6(*self),
+            _ => cln::cln(n, *self)
         }
     }
 }
