@@ -90,9 +90,9 @@ fn ncal(n: i64, x: f64) -> f64 {
     let x2 = x*x;
     let mut xn = xn1*x2; // x^(n + 3)
 
-    for k in 0..B.len() {
+    for (k, bn) in B.iter().enumerate() {
         let old_sum = sum;
-        sum += B[k]*xn/((2*(k as i64) + n + 3) as f64);
+        sum += bn*xn/((2*(k as i64) + n + 3) as f64);
         if sum == old_sum { break; }
         xn *= x2;
     }
