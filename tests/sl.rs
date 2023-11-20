@@ -1,11 +1,13 @@
 use clausen::Sl;
 mod common;
 
+
 #[test]
 #[should_panic]
 fn test_non_positive_order() {
     1.0.sl(0);
 }
+
 
 #[test]
 fn test_values() {

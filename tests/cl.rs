@@ -1,11 +1,13 @@
 use clausen::Cl;
 mod common;
 
+
 #[test]
 #[should_panic]
 fn test_non_positive_order() {
     1.0.cl(0);
 }
+
 
 #[test]
 fn test_values() {
@@ -18,4 +20,10 @@ fn test_values() {
             assert_eq_float!(v.cl(*n), expected, eps);
         }
     }
+}
+
+
+#[test]
+fn test_cl1() {
+    assert_eq!(0.0.cl(1), std::f64::INFINITY);
 }
