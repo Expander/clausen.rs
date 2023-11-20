@@ -16,22 +16,6 @@ mod sl15;
 mod sln;
 
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
-use sl1::sl1;
-use sl2::sl2;
-use sl3::sl3;
-use sl4::sl4;
-use sl5::sl5;
-use sl6::sl6;
-use sl7::sl7;
-use sl8::sl8;
-use sl9::sl9;
-use sl10::sl10;
-use sl11::sl11;
-use sl12::sl12;
-use sl13::sl13;
-use sl14::sl14;
-use sl15::sl15;
-use sln::sln;
 
 
 pub trait Sl<T> {
@@ -53,22 +37,22 @@ impl Sl<f64> for f64 {
 
         match n {
             k if k < 1 => panic!("sl(n) not implemented for n < 1 (you've called {}.sl({}))", self, n),
-            1 => sgn*sl1(r),
-            2 => sgn*sl2(r),
-            3 => sgn*sl3(r),
-            4 => sgn*sl4(r),
-            5 => sgn*sl5(r),
-            6 => sgn*sl6(r),
-            7 => sgn*sl7(r),
-            8 => sgn*sl8(r),
-            9 => sgn*sl9(r),
-            10 => sgn*sl10(r),
-            11 => sgn*sl11(r),
-            12 => sgn*sl12(r),
-            13 => sgn*sl13(r),
-            14 => sgn*sl14(r),
-            15 => sgn*sl15(r),
-            _ => sgn*sln(n, r)
+            1 => sgn*sl1::sl1(r),
+            2 => sgn*sl2::sl2(r),
+            3 => sgn*sl3::sl3(r),
+            4 => sgn*sl4::sl4(r),
+            5 => sgn*sl5::sl5(r),
+            6 => sgn*sl6::sl6(r),
+            7 => sgn*sl7::sl7(r),
+            8 => sgn*sl8::sl8(r),
+            9 => sgn*sl9::sl9(r),
+            10 => sgn*sl10::sl10(r),
+            11 => sgn*sl11::sl11(r),
+            12 => sgn*sl12::sl12(r),
+            13 => sgn*sl13::sl13(r),
+            14 => sgn*sl14::sl14(r),
+            15 => sgn*sl15::sl15(r),
+            _ => sgn*sln::sln(n, r)
         }
     }
 }
