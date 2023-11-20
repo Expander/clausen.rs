@@ -1,3 +1,4 @@
+mod sl0;
 mod sl1;
 mod sl2;
 mod sl3;
@@ -46,7 +47,8 @@ impl Sl<f64> for f64 {
         let (r, sgn) = range_reduce(n, *self);
 
         match n {
-            k if k < 1 => panic!("sl(n) not implemented for n < 1 (you've called {}.sl({}))", self, n),
+            k if k < 0 => 0.0,
+            0 => sgn*sl0::sl0(),
             1 => sgn*sl1::sl1(r),
             2 => sgn*sl2::sl2(r),
             3 => sgn*sl3::sl3(r),
