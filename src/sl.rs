@@ -12,6 +12,7 @@ mod sl11;
 mod sl12;
 mod sl13;
 mod sl14;
+mod sl15;
 mod sln;
 
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
@@ -29,6 +30,7 @@ use sl11::sl11;
 use sl12::sl12;
 use sl13::sl13;
 use sl14::sl14;
+use sl15::sl15;
 use sln::sln;
 
 
@@ -65,6 +67,7 @@ impl Sl<f64> for f64 {
             12 => sgn*sl12(r),
             13 => sgn*sl13(r),
             14 => sgn*sl14(r),
+            15 => sgn*sl15(r),
             _ => sgn*sln(n, r)
         }
     }
