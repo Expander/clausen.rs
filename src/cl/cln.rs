@@ -18,9 +18,9 @@ fn cln_neg(n: i32, x: f64) -> f64 {
     let eix = Complex::new(0.0, x).exp(); // e^(i*x)
 
     if is_even(n) {
-        eix.li(n).im // @todo
+        eix.li(n).im
     } else {
-        eix.li(n).re // @todo
+        eix.li(n).re
     }
 }
 
