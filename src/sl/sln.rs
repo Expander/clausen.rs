@@ -1,6 +1,6 @@
 /// returns Sl_n(x) using the expansion of Sl_n(x) in terms of sin(x) and cos(x)
-pub fn sln(n: i64, x: f64) -> f64 {
-    let kmax = (f64::EPSILON.powf(-(n as f64).recip())).ceil() as i64;
+pub fn sln(n: i32, x: f64) -> f64 {
+    let kmax = (f64::EPSILON.powf(-(n as f64).recip())).ceil() as i32;
 
     if is_even(n) {
         let co = x.cos();
@@ -11,7 +11,7 @@ pub fn sln(n: i64, x: f64) -> f64 {
             let con = 2.0*co*co1 - co2; // cos(n*x)
             co2 = co1;
             co1 = con;
-            sum += con/(k as f64).powf(n as f64);
+            sum += con/(k as f64).powi(n);
         }
         sum
     } else {
@@ -23,13 +23,13 @@ pub fn sln(n: i64, x: f64) -> f64 {
             si = 2.0*co*si1 - si2; // sin(n*x)
             si2 = si1;
             si1 = si;
-            sum += si/(k as f64).powf(n as f64);
+            sum += si/(k as f64).powi(n);
         }
         sum
     }
 }
 
 
-fn is_even(n: i64) -> bool {
+fn is_even(n: i32) -> bool {
     n % 2 == 0
 }

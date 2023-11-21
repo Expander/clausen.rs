@@ -3,7 +3,7 @@ use num::Complex;
 use polylog::Li;
 
 /// Standard Clausen function Cl_n(x) for a real argument
-pub fn cln(n: i64, x: f64) -> f64 {
+pub fn cln(n: i32, x: f64) -> f64 {
     if n < 1 {
         cln_neg(n, x)
     } else {
@@ -13,19 +13,19 @@ pub fn cln(n: i64, x: f64) -> f64 {
 
 
 /// Standard Clausen function Cl_n(x) for a real argument and n < 1
-fn cln_neg(n: i64, x: f64) -> f64 {
+fn cln_neg(n: i32, x: f64) -> f64 {
     let eix = Complex::new(0.0, x).exp(); // e^(i*x)
 
     if is_even(n) {
-        eix.li(n as i32).im // @todo
+        eix.li(n).im // @todo
     } else {
-        eix.li(n as i32).re // @todo
+        eix.li(n).re // @todo
     }
 }
 
 
 /// Standard Clausen function Cl_n(x) for a real argument and n > 0
-fn cln_pos(n: i64, x: f64) -> f64 {
+fn cln_pos(n: i32, x: f64) -> f64 {
     let (r, sgn) = range_reduce(n, x);
 
     if is_even(n) && (r == 0.0 || r == core::f64::consts::PI) {
@@ -42,13 +42,13 @@ fn cln_pos(n: i64, x: f64) -> f64 {
 /// [Jiming Wu, Xiaoping Zhang, Dongjie Liu, "An efficient calculation
 /// of the Clausen functions Cl_n(0)(n >= 2)", Bit Numer Math 50,
 /// 193-206 (2010), https://doi.org/10.1007/s10543-009-0246-8].
-fn cln_pos_zeta(n: i64, x: f64) -> f64 {
+fn cln_pos_zeta(n: i32, x: f64) -> f64 {
     // first line in Eq.(2.13)
     let term1 = if x == 0.0 {
         0.0
     } else {
         let sgn = if is_even((n + 1)/2) { 1.0 } else { -1.0 };
-        sgn*x.powf((n - 1) as f64)*inv_fac(n - 1)*(2.0*(0.5*x).sin()).ln()
+        sgn*x.powi(n - 1)*inv_fac(n - 1)*(2.0*(0.5*x).sin()).ln()
     };
 
     // second line in Eq.(2.13)
@@ -60,13 +60,13 @@ fn cln_pos_zeta(n: i64, x: f64) -> f64 {
 
 
 /// returns 1/n!
-fn inv_fac(n: i64) -> f64 {
+fn inv_fac(n: i32) -> f64 {
     [1.0, 1.0, 0.5, 1.0/6.0, 1.0/24.0, 1.0/120.0, 1.0/720.0, 1.0/5040.0, 1.0/40320.0][n as usize]
 }
 
 
 /// returns P_n(x)
-fn pcal(n: i64, x: f64) -> f64 {
+fn pcal(n: i32, x: f64) -> f64 {
     let mut sum = 0.0;
     let x2 = x*x;
     let fl = (n - 1)/2;
@@ -85,7 +85,7 @@ fn pcal(n: i64, x: f64) -> f64 {
 
 
 /// returns zeta(n) for n = 2,...,9
-fn zeta(n: i64) -> f64 {
+fn zeta(n: i32) -> f64 {
     [1.6449340668482264, 1.2020569031595943, 1.0823232337111382,
      1.0369277551433699, 1.0173430619844491, 1.0083492773819228,
      1.0040773561979443, 1.0020083928260822][(n - 2) as usize]
@@ -93,7 +93,7 @@ fn zeta(n: i64) -> f64 {
 
 
 /// returns sum in Eq.(2.13), n > 1
-fn nsum(n: i64, x: f64) -> f64 {
+fn nsum(n: i32, x: f64) -> f64 {
     let mut sum = 0.0;
     let mut xn = 1.0;
 
@@ -107,15 +107,15 @@ fn nsum(n: i64, x: f64) -> f64 {
 
 
 /// returns N_n(x) from Eq.(2.11)
-fn ncal(n: i64, x: f64) -> f64 {
+fn ncal(n: i32, x: f64) -> f64 {
     let mut sum = 0.0;
-    let xn1 = x.powf((n + 1) as f64);
+    let xn1 = x.powi(n + 1);
     let x2 = x*x;
     let mut xn = xn1*x2; // x^(n + 3)
 
     for (k, bn) in B.iter().enumerate() {
         let old_sum = sum;
-        sum += bn*xn/((2*(k as i64) + n + 3) as f64);
+        sum += bn*xn/((2*(k as i32) + n + 3) as f64);
         if sum == old_sum { break; }
         xn *= x2;
     }
@@ -125,7 +125,7 @@ fn ncal(n: i64, x: f64) -> f64 {
 
 
 /// returns the binomial coefficient (n, k)
-fn binomial(n: i64, k: i64) -> f64 {
+fn binomial(n: i32, k: i32) -> f64 {
     [[1.0, 0.0,  0.0,  0.0,   0.0,   0.0,  0.0,  0.0],
      [1.0, 1.0,  0.0,  0.0,   0.0,   0.0,  0.0,  0.0],
      [1.0, 2.0,  1.0,  0.0,   0.0,   0.0,  0.0,  0.0],
@@ -139,8 +139,8 @@ fn binomial(n: i64, k: i64) -> f64 {
 
 
 /// Series expansion of Cl_n(x) in terms of sin(x) and cos(x)
-fn cln_pos_series(n: i64, x: f64) -> f64 {
-    let kmax = (f64::EPSILON.powf(-(n as f64).recip())).ceil() as i64;
+fn cln_pos_series(n: i32, x: f64) -> f64 {
+    let kmax = (f64::EPSILON.powf(-(n as f64).recip())).ceil() as i32;
 
     if is_even(n) {
         let (mut si, co) = x.sin_cos();
@@ -151,7 +151,7 @@ fn cln_pos_series(n: i64, x: f64) -> f64 {
             si = 2.0*co*si1 - si2; // sin(n*x)
             si2 = si1;
             si1 = si;
-            sum += si/(k as f64).powf(n as f64);
+            sum += si/(k as f64).powi(n);
         }
         sum
     } else {
@@ -163,7 +163,7 @@ fn cln_pos_series(n: i64, x: f64) -> f64 {
             let con = 2.0*co*co1 - co2; // cos(n*x)
             co2 = co1;
             co1 = con;
-            sum += con/(k as f64).powf(n as f64);
+            sum += con/(k as f64).powi(n);
         }
         sum
     }
@@ -171,7 +171,7 @@ fn cln_pos_series(n: i64, x: f64) -> f64 {
 
 
 /// map x to [0,pi] using the symmetries of Cl_n(x)
-fn range_reduce(n: i64, x: f64) -> (f64, f64) {
+fn range_reduce(n: i32, x: f64) -> (f64, f64) {
     if is_even(n) {
         range_reduce_even(x)
     } else {
@@ -180,7 +180,7 @@ fn range_reduce(n: i64, x: f64) -> (f64, f64) {
 }
 
 
-fn is_even(n: i64) -> bool {
+fn is_even(n: i32) -> bool {
     n % 2 == 0
 }
 

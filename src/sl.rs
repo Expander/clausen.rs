@@ -38,12 +38,12 @@ pub trait Sl<T> {
     ///
     /// println!("Sl_{}({}) = {}", 2, 1.0, 1.0.sl(2));
     /// ```
-    fn sl(&self, n: i64) -> T;
+    fn sl(&self, n: i32) -> T;
 }
 
 
 impl Sl<f64> for f64 {
-    fn sl(&self, n: i64) -> f64 {
+    fn sl(&self, n: i32) -> f64 {
         let (r, sgn) = range_reduce(n, *self);
 
         match n {
@@ -81,7 +81,7 @@ impl Sl<f64> for f64 {
 
 
 /// map x to [0,pi] using the symmetries of Sl_n(x)
-fn range_reduce(n: i64, x: f64) -> (f64, f64) {
+fn range_reduce(n: i32, x: f64) -> (f64, f64) {
     if is_even(n) {
         (range_reduce_odd(x), 1.0)
     } else {
@@ -90,6 +90,6 @@ fn range_reduce(n: i64, x: f64) -> (f64, f64) {
 }
 
 
-fn is_even(n: i64) -> bool {
+fn is_even(n: i32) -> bool {
     n % 2 == 0
 }
