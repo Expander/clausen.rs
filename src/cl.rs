@@ -23,7 +23,6 @@ pub trait Cl<T> {
 impl Cl<f64> for f64 {
     fn cl(&self, n: i64) -> f64 {
         match n {
-            k if k < 1 => panic!("cl(n) not implemented for n < 1 (you've called {}.cl({}))", self, n),
             1 => cl1::cl1(*self),
             2 => cl2::cl2(*self),
             3 => cl3::cl3(*self),

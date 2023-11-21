@@ -1,16 +1,39 @@
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
-
+use num::Complex;
+use polylog::Li;
 
 /// Standard Clausen function Cl_n(x) for a real argument
 pub fn cln(n: i64, x: f64) -> f64 {
+    if n < 1 {
+        cln_neg(n, x)
+    } else {
+        cln_pos(n, x)
+    }
+}
+
+
+/// Standard Clausen function Cl_n(x) for a real argument and n < 1
+fn cln_neg(n: i64, x: f64) -> f64 {
+    let eix = Complex::new(0.0, x).exp(); // e^(i*x)
+
+    if is_even(n) {
+        eix.li(n as i32).im // @todo
+    } else {
+        eix.li(n as i32).re // @todo
+    }
+}
+
+
+/// Standard Clausen function Cl_n(x) for a real argument and n > 0
+fn cln_pos(n: i64, x: f64) -> f64 {
     let (r, sgn) = range_reduce(n, x);
 
     if is_even(n) && (r == 0.0 || r == core::f64::consts::PI) {
         0.0
     } else if n < 10 {
-        sgn*cln_zeta(n, r)
+        sgn*cln_pos_zeta(n, r)
     } else {
-        sgn*cln_series(n, r)
+        sgn*cln_pos_series(n, r)
     }
 }
 
@@ -19,7 +42,7 @@ pub fn cln(n: i64, x: f64) -> f64 {
 /// [Jiming Wu, Xiaoping Zhang, Dongjie Liu, "An efficient calculation
 /// of the Clausen functions Cl_n(0)(n >= 2)", Bit Numer Math 50,
 /// 193-206 (2010), https://doi.org/10.1007/s10543-009-0246-8].
-fn cln_zeta(n: i64, x: f64) -> f64 {
+fn cln_pos_zeta(n: i64, x: f64) -> f64 {
     // first line in Eq.(2.13)
     let term1 = if x == 0.0 {
         0.0
@@ -116,7 +139,7 @@ fn binomial(n: i64, k: i64) -> f64 {
 
 
 /// Series expansion of Cl_n(x) in terms of sin(x) and cos(x)
-fn cln_series(n: i64, x: f64) -> f64 {
+fn cln_pos_series(n: i64, x: f64) -> f64 {
     let kmax = (f64::EPSILON.powf(-(n as f64).recip())).ceil() as i64;
 
     if is_even(n) {
