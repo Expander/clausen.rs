@@ -1,4 +1,4 @@
-/// returns Sl_n(x) using the expansion of Sl_n(x) in terms of sin(x) and cos(x)
+/// returns Sl_n(x) using the expansion of Sl_n(x) in terms of sin(x) and cos(x) for n > 1
 pub fn sln(n: i32, x: f64) -> f64 {
     let kmax = (f64::EPSILON.powf(-(n as f64).recip())).ceil() as i32;
 
