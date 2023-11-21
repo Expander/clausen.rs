@@ -11,7 +11,7 @@ edition = "2018"
 
 [dependencies]
 num = "0.4"
-polylog = "2"
+polylog = "2.5.3"
 
 [dev-dependencies]
 criterion = { version = "0.5", features = ["html_reports"] }
