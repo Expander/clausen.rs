@@ -27,6 +27,8 @@ mod sl25;
 mod sln;
 
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
+use num::complex::Complex;
+use polylog::Li;
 
 
 pub trait Sl<T> {
@@ -35,8 +37,10 @@ pub trait Sl<T> {
     /// # Example:
     /// ```
     /// use clausen::Sl;
+    /// use num::complex::Complex;
     ///
-    /// println!("Sl_{}({}) = {}", 2, 1.0, 1.0.sl(2));
+    /// assert!((1.0.sl(2) - 0.32413774005332982).abs() < 1e-15);
+    /// assert!((Complex::new(1.0, 1.0).sl(2) - Complex::new(0.07413774005332982, -1.07079632679489662)).norm() < 1e-15);
     /// ```
     fn sl(&self, n: i32) -> T;
 }
@@ -75,6 +79,28 @@ impl Sl<f64> for f64 {
             24 => sgn*sl24::sl24(r),
             25 => sgn*sl25::sl25(r),
             _ => sgn*sln::sln(n, r)
+        }
+    }
+}
+
+
+impl Sl<Complex<f64>> for Complex<f64> {
+    fn sl(&self, n: i32) -> Complex<f64> {
+        if n < 0 {
+            Complex::new(0.0, 0.0)
+        } else if n == 0 {
+            Complex::new(-0.5, 0.0)
+        } else if n == 1 && self.re == 0.0 && self.im == 0.0 {
+            Complex::new(0.0, 0.0)
+        } else {
+            let eiz = (Complex::<f64>::i()*self).exp();
+            let inv_eiz = 1.0/eiz;
+
+            if is_even(n) {
+                0.5*(inv_eiz.li(n) + eiz.li(n))
+            } else {
+                0.5*Complex::<f64>::i()*(inv_eiz.li(n) - eiz.li(n))
+            }
         }
     }
 }

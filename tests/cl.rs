@@ -1,3 +1,4 @@
+use num::complex::Complex;
 use clausen::Cl;
 mod common;
 
@@ -11,6 +12,10 @@ fn test_values() {
 
         for &(v, expected) in values.iter() {
             assert_eq_float!(v.cl(*n), expected, eps);
+            if n < &1000000 {
+                // n = 1000000 panics in polylog 2.5.2
+                assert_eq_float!(Complex::new(v, 0.0).cl(*n).re, expected, eps);
+            }
         }
     }
 }

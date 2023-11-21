@@ -1,3 +1,4 @@
+use num::complex::Complex;
 use clausen::Sl;
 mod common;
 
@@ -11,6 +12,7 @@ fn test_values() {
 
         for &(v, expected) in values.iter() {
             assert_eq_float!(v.sl(*n), expected, eps);
+            assert_eq_float!(Complex::new(v, 0.0).sl(*n).re, expected, eps);
         }
     }
 }
