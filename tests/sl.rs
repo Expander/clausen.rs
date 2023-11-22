@@ -1,4 +1,5 @@
 use num::complex::Complex;
+use num::Float;
 use clausen::Sl;
 mod common;
 
@@ -15,4 +16,19 @@ fn test_values() {
             assert_eq_float!(Complex::new(v, 0.0).sl(*n).re, expected, eps);
         }
     }
+}
+
+
+#[test]
+fn test_complex_input() {
+    let eps = 1e-14;
+
+    assert_eq_complex!(Complex::new(0.0,  1.0).sl(1), Complex::new(  1.5707963267948966, -0.5), eps);
+    assert_eq_complex!(Complex::new(0.0, -1.0).sl(1), Complex::new( -1.5707963267948966,  0.5), eps);
+    assert_eq_complex!(Complex::new(0.0,  1.0).sl(2), Complex::new(  1.3949340668482264, -1.5707963267948966), eps);
+    assert_eq_complex!(Complex::new(0.0, -1.0).sl(2), Complex::new(  1.3949340668482264, -1.5707963267948966), eps);
+    assert_eq_complex!(Complex::new(1.0,  1.0).sl(2), Complex::new(  0.07413774005332982, -1.07079632679489662), eps);
+    assert_eq_complex!(Complex::new(1.0, -1.0).sl(2), Complex::new(  0.07413774005332982,  1.07079632679489662), eps);
+    assert_eq_complex!(Complex::new(0.0,  1.0).sl(3), Complex::new(  0.7853981633974483,  1.5616007335148931), eps);
+    assert_eq_complex!(Complex::new(0.0, -1.0).sl(3), Complex::new( -0.7853981633974483, -1.5616007335148931), eps);
 }
