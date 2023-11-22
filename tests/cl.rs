@@ -27,14 +27,24 @@ fn test_complex_input() {
     assert_eq_complex!(Complex::new(1.0, -1.0).cl(-2), Complex::new( 0.50688457710655124, -0.50950616274374456), eps);
     assert_eq_complex!(Complex::new(1.0,  1.0).cl(-1), Complex::new(-0.08267495282794197,  0.49171277760817954), eps);
     assert_eq_complex!(Complex::new(1.0, -1.0).cl(-1), Complex::new(-0.08267495282794197, -0.49171277760817954), eps);
-    // assert_eq_complex!(Complex::new(1.0,  1.0).cl( 0), Complex::new(0.5, 0.5).cot()/2.0, eps);
-    // assert_eq_complex!(Complex::new(1.0, -1.0).cl( 0), Complex::new(0.5, 0.5).coth()*Complex::<f64>::i()/2.0, eps);
+    assert_eq_complex!(Complex::new(1.0,  1.0).cl( 0), cot(Complex::new(0.5, 0.5))/2.0, eps);
+    assert_eq_complex!(Complex::new(1.0, -1.0).cl( 0), coth(Complex::new(0.5, 0.5))*Complex::<f64>::i()/2.0, eps);
     assert_eq_complex!(Complex::new(0.0,  1.0).cl( 1), Complex::new(-0.0413248546129181, -1.5707963267948966), eps);
     assert_eq_complex!(Complex::new(0.0, -1.0).cl( 1), Complex::new(-0.0413248546129181, -1.5707963267948966), eps);
     assert_eq_complex!(Complex::new(0.0,  1.0).cl( 2), Complex::new( 1.5707963267948966,  0.9861797794993302), eps);
     assert_eq_complex!(Complex::new(0.0, -1.0).cl( 2), Complex::new(-1.5707963267948966, -0.9861797794993302), eps);
     assert_eq_complex!(Complex::new(1.0,  1.0).cl( 2), Complex::new( 1.4107754938116412, -0.1044778629291566), eps);
     assert_eq_complex!(Complex::new(1.0, -1.0).cl( 2), Complex::new( 1.4107754938116412,  0.1044778629291566), eps);
+}
+
+
+fn cot(z: Complex<f64>) -> Complex<f64> {
+    1.0/z.tan()
+}
+
+
+fn coth(z: Complex<f64>) -> Complex<f64> {
+    1.0/z.tanh()
 }
 
 
