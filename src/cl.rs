@@ -11,21 +11,22 @@ use polylog::Li;
 
 
 pub trait Cl<T> {
-    /// Returns the n-th order Standard Clausen function.
-    ///
-    /// # Example:
-    /// ```
-    /// use clausen::Cl;
-    /// use num::complex::Complex;
-    ///
-    /// assert!((1.0.cl(2) - 1.0139591323607685).abs() < 1e-15);
-    /// assert!((Complex::new(1.0, 1.0).cl(2) - Complex::new(1.4107754938116412, -0.1044778629291566)).norm() < 1e-15);
-    /// ```
+    /// Returns the n-th order Standard Clausen function for an
+    /// argument of type `T`.
     fn cl(&self, n: i32) -> T;
 }
 
 
 impl Cl<f64> for f64 {
+    /// Returns the n-th order Standard Clausen function for a real
+    /// argument of type `f64`.
+    ///
+    /// # Example:
+    /// ```
+    /// use clausen::Cl;
+    ///
+    /// assert!((1.0.cl(2) - 1.0139591323607685).abs() < 1e-15);
+    /// ```
     fn cl(&self, n: i32) -> f64 {
         match n {
             1 => cl1::cl1(*self),
@@ -41,6 +42,16 @@ impl Cl<f64> for f64 {
 
 
 impl Cl<Complex<f64>> for Complex<f64> {
+    /// Returns the n-th order Standard Clausen function for a complex
+    /// argument of type `Complex<f64>`.
+    ///
+    /// # Example:
+    /// ```
+    /// use clausen::Cl;
+    /// use num::complex::Complex;
+    ///
+    /// assert!((Complex::new(1.0, 1.0).cl(2) - Complex::new(1.4107754938116412, -0.1044778629291566)).norm() < 1e-15);
+    /// ```
     fn cl(&self, n: i32) -> Complex<f64> {
         let eiz = (Complex::<f64>::i()*self).exp();
         let inv_eiz = 1.0/eiz;

@@ -32,21 +32,22 @@ use polylog::Li;
 
 
 pub trait Sl<T> {
-    /// Returns the n-th order Glaisher-Clausen function.
-    ///
-    /// # Example:
-    /// ```
-    /// use clausen::Sl;
-    /// use num::complex::Complex;
-    ///
-    /// assert!((1.0.sl(2) - 0.32413774005332982).abs() < 1e-15);
-    /// assert!((Complex::new(1.0, 1.0).sl(2) - Complex::new(0.07413774005332982, -1.07079632679489662)).norm() < 1e-15);
-    /// ```
+    /// Returns the n-th order Glaisher-Clausen function for an
+    /// argument of type `T`.
     fn sl(&self, n: i32) -> T;
 }
 
 
 impl Sl<f64> for f64 {
+    /// Returns the n-th order Glaisher-Clausen function for a real
+    /// argument of type `f64`.
+    ///
+    /// # Example:
+    /// ```
+    /// use clausen::Sl;
+    ///
+    /// assert!((1.0.sl(2) - 0.32413774005332982).abs() < 1e-15);
+    /// ```
     fn sl(&self, n: i32) -> f64 {
         let (r, sgn) = range_reduce(n, *self);
 
@@ -85,6 +86,16 @@ impl Sl<f64> for f64 {
 
 
 impl Sl<Complex<f64>> for Complex<f64> {
+    /// Returns the n-th order Glaisher-Clausen function for a complex
+    /// argument of type `Complex<f64>`.
+    ///
+    /// # Example:
+    /// ```
+    /// use clausen::Sl;
+    /// use num::complex::Complex;
+    ///
+    /// assert!((Complex::new(1.0, 1.0).sl(2) - Complex::new(0.07413774005332982, -1.07079632679489662)).norm() < 1e-15);
+    /// ```
     fn sl(&self, n: i32) -> Complex<f64> {
         if n < 0 {
             Complex::new(0.0, 0.0)
