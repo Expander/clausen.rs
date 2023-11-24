@@ -41,7 +41,7 @@ fn cln_pos(n: i32, x: f64) -> f64 {
 
 /// Series expansion of Cl_n(x) in terms of the zeta function from
 /// [Jiming Wu, Xiaoping Zhang, Dongjie Liu, "An efficient calculation
-/// of the Clausen functions Cl_n(0)(n >= 2)", Bit Numer Math 50,
+/// of the Clausen functions Cl_n(θ)(n >= 2)", Bit Numer Math 50,
 /// 193-206 (2010), https://doi.org/10.1007/s10543-009-0246-8].
 fn cln_pos_zeta(n: i32, x: f64) -> f64 {
     // first line in Eq.(2.13)
