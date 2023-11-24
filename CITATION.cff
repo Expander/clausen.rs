@@ -5,7 +5,7 @@ authors:
   given-names: "Alexander"
   orcid: "https://orcid.org/0000-0001-8963-6512"
 title: "clausen"
-version: 0.1.0
-date-released: 2023-11-21
+version: 1.0.0
+date-released: 2023-11-24
 url: "https://github.com/Expander/clausen.rs"
 license: LGPL-3.0-only

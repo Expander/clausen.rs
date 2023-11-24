@@ -1,6 +1,6 @@
 [package]
 name = "clausen"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Alexander Voigt <ahgvoigt@gmail.com>"]
 license = "LGPL-3.0-only"
 readme = "README.md"
