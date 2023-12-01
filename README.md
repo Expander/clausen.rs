@@ -3,6 +3,7 @@ clausen
 
 [![Build Status](https://github.com/Expander/clausen.rs/workflows/test/badge.svg)](https://github.com/Expander/clausen.rs/actions)
 [![Documentation](https://docs.rs/clausen/badge.svg)](https://docs.rs/clausen/)
+[![Coverage Status](https://coveralls.io/repos/github/Expander/clausen.rs/badge.svg)](https://coveralls.io/github/Expander/clausen.rs)
 
 The clausen package provides Rust implementations of the Standard
 Clausen functions and Glaisher-Clausen functions of integer order for
