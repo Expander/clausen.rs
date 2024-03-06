@@ -15,10 +15,14 @@ pub fn cln(n: i32, x: f64) -> f64 {
 
 /// Standard Clausen function Cl_n(x) for a real argument and n < 1
 fn cln_neg(n: i32, x: f64) -> f64 {
-    let eix = Complex::new(0.0, x).exp(); // e^(i*x)
+    let eix = Complex::cis(x); // e^(i*x)
 
     if is_even(n) {
-        eix.li(n).im
+        if x == 0.0 {
+            x
+        } else {
+            eix.li(n).im
+        }
     } else {
         eix.li(n).re
     }
@@ -29,7 +33,9 @@ fn cln_neg(n: i32, x: f64) -> f64 {
 fn cln_pos(n: i32, x: f64) -> f64 {
     let (r, sgn) = range_reduce(n, x);
 
-    if is_even(n) && (r == 0.0 || r == core::f64::consts::PI) {
+    if is_even(n) && r == 0.0 {
+        r
+    } else if is_even(n) && r == core::f64::consts::PI {
         0.0
     } else if n < 10 {
         sgn*cln_pos_zeta(n, r)
