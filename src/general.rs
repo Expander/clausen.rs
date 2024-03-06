@@ -1,6 +1,10 @@
 /// general Clausen function S_n(x) defined as a series of sin(x) for
 /// n > 0
 pub fn si(n: i32, x: f64) -> f64 {
+    if x == 0.0 {
+        return x
+    }
+
     let kmax = max_order(n);
 
     let (mut si, co) = x.sin_cos();
