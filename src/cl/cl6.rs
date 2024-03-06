@@ -5,7 +5,9 @@ use crate::range_reduction::range_reduce_even;
 pub fn cl6(x: f64) -> f64 {
     let (r, sgn) = range_reduce_even(x);
 
-    if r == 0.0 || r == std::f64::consts::PI {
+    if r == 0.0 {
+        r
+    } else if r == std::f64::consts::PI {
         0.0
     } else if r < 0.5*std::f64::consts::PI {
         let cp = [

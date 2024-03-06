@@ -6,7 +6,9 @@ pub fn cl4(x: f64) -> f64 {
     let zeta3 = 1.2020569031595943;
     let (r, sgn) = range_reduce_even(x);
 
-    if r == 0.0 || r == std::f64::consts::PI {
+    if r == 0.0 {
+        r
+    } else if r == std::f64::consts::PI {
         0.0
     } else if r < 0.5*std::f64::consts::PI {
         let cp = [

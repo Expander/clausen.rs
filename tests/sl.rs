@@ -32,3 +32,24 @@ fn test_complex_input() {
     assert_eq_complex!(Complex::new(0.0,  1.0).sl(3), Complex::new(  0.7853981633974483,  1.5616007335148931), eps);
     assert_eq_complex!(Complex::new(0.0, -1.0).sl(3), Complex::new( -0.7853981633974483, -1.5616007335148931), eps);
 }
+
+
+#[test]
+fn test_signed_zero() {
+    let pz64 = 0.0_f64;
+    let nz64 = -0.0_f64;
+
+    for n in (1..101).into_iter().step_by(2) {
+        assert!(pz64.sl(n).is_sign_positive());
+        assert!(nz64.sl(n).is_sign_negative());
+
+        assert!(Complex::new(pz64, pz64).sl(n).re.is_sign_positive());
+        assert!(Complex::new(pz64, pz64).sl(n).im.is_sign_positive());
+        assert!(Complex::new(pz64, nz64).sl(n).re.is_sign_positive());
+        assert!(Complex::new(pz64, nz64).sl(n).im.is_sign_negative());
+        assert!(Complex::new(nz64, pz64).sl(n).re.is_sign_negative());
+        assert!(Complex::new(nz64, pz64).sl(n).im.is_sign_positive());
+        assert!(Complex::new(nz64, nz64).sl(n).re.is_sign_negative());
+        assert!(Complex::new(nz64, nz64).sl(n).im.is_sign_negative());
+    }
+}

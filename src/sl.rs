@@ -102,7 +102,7 @@ impl Sl<Complex<f64>> for Complex<f64> {
         } else if n == 0 {
             Complex::new(-0.5, 0.0)
         } else if n == 1 && self.re == 0.0 && self.im == 0.0 {
-            Complex::new(0.0, 0.0)
+            *self
         } else {
             let eiz = (Complex::<f64>::i()*self).exp();
             let inv_eiz = 1.0/eiz;
@@ -110,7 +110,11 @@ impl Sl<Complex<f64>> for Complex<f64> {
             if is_even(n) {
                 0.5*(inv_eiz.li(n) + eiz.li(n))
             } else {
-                0.5*Complex::<f64>::i()*(inv_eiz.li(n) - eiz.li(n))
+                if *self == Complex::new(0.0, 0.0) {
+                    *self
+                } else {
+                    0.5*Complex::<f64>::i()*(inv_eiz.li(n) - eiz.li(n))
+                }
             }
         }
     }
