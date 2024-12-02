@@ -104,16 +104,15 @@ impl Sl<Complex<f64>> for Complex<f64> {
         } else if n == 1 && self.re == 0.0 && self.im == 0.0 {
             *self
         } else {
-            let eiz = (Complex::<f64>::i()*self).exp();
-            let inv_eiz = 1.0/eiz;
-
             if is_even(n) {
-                0.5*(inv_eiz.li(n) + eiz.li(n))
+                let eiz = cis(self);
+                0.5*((1.0/eiz).li(n) + eiz.li(n))
             } else {
                 if *self == Complex::new(0.0, 0.0) {
                     *self
                 } else {
-                    0.5*Complex::<f64>::i()*(inv_eiz.li(n) - eiz.li(n))
+                    let eiz = cis(self);
+                    0.5*times_i(&((1.0/eiz).li(n) - eiz.li(n)))
                 }
             }
         }
@@ -133,4 +132,14 @@ fn range_reduce(n: i32, x: f64) -> (f64, f64) {
 
 fn is_even(n: i32) -> bool {
     n % 2 == 0
+}
+
+
+fn times_i(z: &Complex<f64>) -> Complex<f64> {
+    Complex::new(-z.im, z.re)
+}
+
+
+fn cis(z: &Complex<f64>) -> Complex<f64> {
+    times_i(z).exp()
 }
