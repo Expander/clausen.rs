@@ -15,15 +15,15 @@ pub fn cln(n: i32, x: f64) -> f64 {
 
 /// Standard Clausen function Cl_n(x) for a real argument and n < 1
 fn cln_neg(n: i32, x: f64) -> f64 {
-    let eix = Complex::cis(x); // e^(i*x)
-
     if is_even(n) {
         if x == 0.0 {
             x
         } else {
+            let eix = Complex::cis(x); // e^(i*x)
             eix.li(n).im
         }
     } else {
+        let eix = Complex::cis(x); // e^(i*x)
         eix.li(n).re
     }
 }
