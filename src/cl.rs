@@ -59,11 +59,11 @@ impl Cl<Complex<f64>> for Complex<f64> {
                 *self
             } else {
                 let eiz = cis(self);
-                0.5*times_i(&((1.0/eiz).li(n) - eiz.li(n)))
+                0.5*times_i(&(eiz.inv().li(n) - eiz.li(n)))
             }
         } else {
             let eiz = cis(self);
-            0.5*((1.0/eiz).li(n) + eiz.li(n))
+            0.5*(eiz.inv().li(n) + eiz.li(n))
         }
     }
 }

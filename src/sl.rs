@@ -107,13 +107,13 @@ impl Sl<Complex<f64>> for Complex<f64> {
         } else {
             if is_even(n) {
                 let eiz = cis(self);
-                0.5*((1.0/eiz).li(n) + eiz.li(n))
+                0.5*(eiz.inv().li(n) + eiz.li(n))
             } else {
                 if *self == Complex::new(0.0, 0.0) {
                     *self
                 } else {
                     let eiz = cis(self);
-                    0.5*times_i(&((1.0/eiz).li(n) - eiz.li(n)))
+                    0.5*times_i(&(eiz.inv().li(n) - eiz.li(n)))
                 }
             }
         }
