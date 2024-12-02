@@ -6,6 +6,7 @@ mod cl5;
 mod cl6;
 mod cln;
 
+use crate::complex::{times_i, cis};
 use num::complex::Complex;
 use polylog::Li;
 
@@ -53,17 +54,16 @@ impl Cl<Complex<f64>> for Complex<f64> {
     /// assert!((Complex::new(1.0, 1.0).cl(2) - Complex::new(1.4107754938116412, -0.1044778629291566)).norm() < 1e-15);
     /// ```
     fn cl(&self, n: i32) -> Complex<f64> {
-        let eiz = (Complex::<f64>::i()*self).exp();
-        let inv_eiz = 1.0/eiz;
-
         if is_even(n) {
             if *self == Complex::new(0.0, 0.0) {
                 *self
             } else {
-                0.5*Complex::<f64>::i()*(inv_eiz.li(n) - eiz.li(n))
+                let eiz = cis(self);
+                0.5*times_i(&(eiz.inv().li(n) - eiz.li(n)))
             }
         } else {
-            0.5*(inv_eiz.li(n) + eiz.li(n))
+            let eiz = cis(self);
+            0.5*(eiz.inv().li(n) + eiz.li(n))
         }
     }
 }

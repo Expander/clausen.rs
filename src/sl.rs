@@ -26,6 +26,7 @@ mod sl24;
 mod sl25;
 mod sln;
 
+use crate::complex::{times_i, cis};
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
 use num::complex::Complex;
 use polylog::Li;
@@ -104,16 +105,15 @@ impl Sl<Complex<f64>> for Complex<f64> {
         } else if n == 1 && self.re == 0.0 && self.im == 0.0 {
             *self
         } else {
-            let eiz = (Complex::<f64>::i()*self).exp();
-            let inv_eiz = 1.0/eiz;
-
             if is_even(n) {
-                0.5*(inv_eiz.li(n) + eiz.li(n))
+                let eiz = cis(self);
+                0.5*(eiz.inv().li(n) + eiz.li(n))
             } else {
                 if *self == Complex::new(0.0, 0.0) {
                     *self
                 } else {
-                    0.5*Complex::<f64>::i()*(inv_eiz.li(n) - eiz.li(n))
+                    let eiz = cis(self);
+                    0.5*times_i(&(eiz.inv().li(n) - eiz.li(n)))
                 }
             }
         }
