@@ -9,5 +9,5 @@ pub fn times_i(z: &Complex<f64>) -> Complex<f64> {
 
 /// returns exp(i*z)
 pub fn cis(z: &Complex<f64>) -> Complex<f64> {
-    times_i(z).exp()
+    (-z.im).exp()*Complex::cis(z.re)
 }
