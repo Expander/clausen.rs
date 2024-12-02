@@ -6,6 +6,7 @@ mod cl5;
 mod cl6;
 mod cln;
 
+use crate::complex::{times_i, cis};
 use num::complex::Complex;
 use polylog::Li;
 
@@ -70,14 +71,4 @@ impl Cl<Complex<f64>> for Complex<f64> {
 
 fn is_even(n: i32) -> bool {
     n % 2 == 0
-}
-
-
-fn times_i(z: &Complex<f64>) -> Complex<f64> {
-    Complex::new(-z.im, z.re)
-}
-
-
-fn cis(z: &Complex<f64>) -> Complex<f64> {
-    times_i(z).exp()
 }

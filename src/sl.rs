@@ -26,6 +26,7 @@ mod sl24;
 mod sl25;
 mod sln;
 
+use crate::complex::{times_i, cis};
 use crate::range_reduction::{range_reduce_even, range_reduce_odd};
 use num::complex::Complex;
 use polylog::Li;
@@ -132,14 +133,4 @@ fn range_reduce(n: i32, x: f64) -> (f64, f64) {
 
 fn is_even(n: i32) -> bool {
     n % 2 == 0
-}
-
-
-fn times_i(z: &Complex<f64>) -> Complex<f64> {
-    Complex::new(-z.im, z.re)
-}
-
-
-fn cis(z: &Complex<f64>) -> Complex<f64> {
-    times_i(z).exp()
 }
