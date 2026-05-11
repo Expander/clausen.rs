@@ -7,7 +7,7 @@ readme = "README.md"
 description = "Rust implementation of Clausen functions."
 homepage = "https://github.com/Expander/clausen.rs"
 repository = "https://github.com/Expander/clausen.rs"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 num = "0.4"
